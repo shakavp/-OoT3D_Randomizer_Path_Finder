@@ -1,0 +1,2 @@
+bidict==0.21.4
+networkx==2.6.3
