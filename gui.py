@@ -12,27 +12,25 @@ class MyApp():
     def __init__(self):
         self.root = tk.Tk()
 
-        choices = [
-            "House",
-            "Market",
-            "Kokori Florest",
-            "Lost Woods"
-            ]
+        choices = []
+        with open("locations.txt", 'r', encoding='UTF-8') as locations_file:
+            for location in locations_file:
+                choices.append(location.strip())
 
         self.root.title('Path Calculator')
 
         label1 = tk.Label(self.root, text = "Origin")
         label1.grid(column=0, row=0, padx=(10, 10))
 
-        self.combo1 = ttk.Combobox(self.root, values=choices)
-        self.combo1.grid(column=0, row=1, padx=(10, 10))
+        self.combo1 = ttk.Combobox(self.root, values=choices, width=50)
+        self.combo1.grid(column=0, row=1, padx=(20, 20))
         self.combo1.current(0)
 
         label2 = tk.Label(self.root, text = "Destination")
         label2.grid(column=2, row=0, padx=(10, 10))
 
-        self.combo2 = ttk.Combobox(self.root, values=choices)
-        self.combo2.grid(column=2, row=1, padx=(10, 10))
+        self.combo2 = ttk.Combobox(self.root, values=choices,  width=50)
+        self.combo2.grid(column=2, row=1, padx=(20, 20))
         self.combo2.current(0)
 
         button1 = ttk.Button(self.root, text="Add path", command=self.add)
@@ -41,7 +39,7 @@ class MyApp():
         button2 = ttk.Button(self.root, text="Calculate shortest path", command=self.calculate_path)
         button2.grid(column=1, row=4, pady=(0, 30))
 
-        self.text_box = tk.Text(self.root, font= ('Arial', 8), height=22, width=70)
+        self.text_box = tk.Text(self.root, font= ('Arial', 8), height=22, width=100)
         self.text_box.grid(column=0, row=5, columnspan=3, pady=(0, 10))
         self.text_box.config(state='disabled')
 
