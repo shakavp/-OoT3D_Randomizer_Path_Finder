@@ -1,12 +1,19 @@
+"""
+created on 22/01/2022
+@author: Geraldo C. Zampoli
+"""
 import tkinter as tk
 from tkinter import ttk
 
 class MyApp():
+    """
+    Path calculator GUI
+    """
     def __init__(self):
         self.root = tk.Tk()
 
         choices = [
-            "House", 
+            "House",
             "Market",
             "Kokori Florest",
             "Lost Woods"
@@ -38,23 +45,38 @@ class MyApp():
         self.text_box.grid(column=0, row=5, columnspan=3, pady=(0, 10))
         self.text_box.config(state='disabled')
 
-    def update_text(self, msg):
+    def _update_text(self, msg):
+        """
+        Update message on texbox
+        """
         self.text_box.config(state='normal')
         self.text_box.delete(1.0, 'end')
         self.text_box.insert('end', msg)
         self.text_box.config(state='disabled')
 
+    def _clear_text(self):
+        """
+        Clear textbox
+        """
+        self.text_box.delete(1.0, 'end')
+
     def add(self):
+        """
+        Add new conection to the digraph and prints a message on textbox
+        """
         origin_add = self.combo1.get()
         destination_add = self.combo2.get()
         msg_aux = f"Adding {origin_add} -> {destination_add} to the digraph\n"
-        self.update_text(msg_aux)
+        self._update_text(msg_aux)
 
     def calculate_path(self):
+        """
+        Calculate the shortest path and print the steps on textbox
+        """
         origin_add = self.combo1.get()
         destination_add = self.combo2.get()
         msg_aux = f"Searching shortest path from {origin_add} to {destination_add}\n"
-        self.update_text(msg_aux)
+        self._update_text(msg_aux)
 
 app = MyApp()
 app.root.mainloop()
